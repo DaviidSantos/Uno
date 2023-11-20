@@ -23,7 +23,7 @@ export const cadastrarItensDeAnalise = async (
     return res.status(400).json({ error: body.error });
   }
 
-  await prisma.itemDeAnalise.create({
+  const item = await prisma.itemDeAnalise.create({
     data: {
       quantidadeRecebida: body.data.quantidade,
       quantidadeDisponivel: body.data.quantidade,
@@ -50,7 +50,7 @@ export const cadastrarItensDeAnalise = async (
     }
   });
 
-  return res.status(201).json({ message: "Item de análise criado!" });
+  return res.status(201).json({ id: item.id });
 };
 
 export const listarItensDeAnalise = async (
